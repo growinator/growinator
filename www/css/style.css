@@ -1,0 +1,7 @@
+/* Empty. Add your own CSS if you like */
+.button-active{
+  class=button button-positive;
+}
+.button-inactive{
+  class=button button-outline button-positive
+}
