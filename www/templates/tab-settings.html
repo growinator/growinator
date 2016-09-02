@@ -1,9 +1,13 @@
 <ion-view view-title="Settings">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Auto Connect
-    </ion-toggle>
+      <ion-toggle  ng-model="settings.autoConnect">
+          Auto Connect
+      </ion-toggle>
+      <p>
+      <div class="button-bar">
+        <button id="reset_button" class="button button-outline button-positive" ng-click="resetCamera()">Reset Camera</button>
+      </div>
     </ion-list>
   </ion-content>
 </ion-view>
