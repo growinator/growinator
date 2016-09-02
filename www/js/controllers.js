@@ -1,3 +1,10 @@
+var headers = {
+  'Access-Control-Allow-Origin' : '*',
+  'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+};
+
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, $http) {
@@ -6,12 +13,6 @@ angular.module('starter.controllers', [])
   $scope.sensor1 = false;
   $scope.sensor2 = false;
   $scope.sensor3 = false;
-  var headers = {
-		'Access-Control-Allow-Origin' : '*',
-		'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
-		'Content-Type': 'application/json',
-		'Accept': 'application/json'
-	};
 
   $scope.toggleSensor = function(pin_gpio) {
       console.log(pin_gpio+"button clicked");
@@ -116,18 +117,33 @@ angular.module('starter.controllers', [])
 .controller('AccountCtrl', function($scope, $http) {
   $scope.settings = {
     autoConnect: true
-    $scope.resetCamera = function() {
-      $http({
-          method: 'GET',
-          headers: headers,
-          url: $scope.url+'/?reset=true'
-        }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-          }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-          });
-    }
   };
+  $scope.resetCamera = function(pin_gpio) {
+    console.log("Resetting camera");
+    $http({
+      method: 'GET',
+      headers: headers,
+      url: $scope.url+'/?resetcamera=true'
+    }).then(function successCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
+  }
+  $scope.powerOff = function(pin_gpio) {
+    console.log("Powering off Raspberry Pi");
+    $http({
+      method: 'GET',
+      headers: headers,
+      url: $scope.url+'/?poweroff=true'
+    }).then(function successCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
+  }
 });
