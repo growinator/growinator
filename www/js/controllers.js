@@ -1,3 +1,6 @@
+var url="http://138.68.57.251:30001";
+var url_webrtc="http://138.68.57.251:20001/stream/video.mjpeg";
+
 var headers = {
   'Access-Control-Allow-Origin' : '*',
   'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
@@ -8,8 +11,8 @@ var headers = {
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, $http) {
-  $scope.url = "http://138.68.57.251:30001"
-  $scope.url_webrtc= "http://138.68.57.251:20001/stream/video.mjpeg"
+  $scope.url = url;
+  $scope.url_webrtc= url_webrtc;
   $scope.sensor1 = false;
   $scope.sensor2 = false;
   $scope.sensor3 = false;
@@ -114,16 +117,17 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('AccountCtrl', function($scope, $http) {
+.controller('SettingsCtrl', function($scope, $http) {
   $scope.settings = {
     autoConnect: true
   };
-  $scope.resetCamera = function(pin_gpio) {
+
+  $scope.resetCamera = function() {
     console.log("Resetting camera");
     $http({
       method: 'GET',
       headers: headers,
-      url: $scope.url+'/?resetcamera=true'
+      url: url+'/?resetcamera=true'
     }).then(function successCallback(response) {
         // this callback will be called asynchronously
         // when the response is available
@@ -132,12 +136,13 @@ angular.module('starter.controllers', [])
         // or server returns response with an error status.
       });
   }
-  $scope.powerOff = function(pin_gpio) {
+
+  $scope.powerOff = function() {
     console.log("Powering off Raspberry Pi");
     $http({
       method: 'GET',
       headers: headers,
-      url: $scope.url+'/?poweroff=true'
+      url: url+'/?poweroff=true'
     }).then(function successCallback(response) {
         // this callback will be called asynchronously
         // when the response is available
