@@ -1,0 +1,14 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding row row-center">
+
+      <div class="item item-image" style="height: auto max-width:100%;">
+          <img ng-src="{{url_webrtc}}" err-SRC src="img/video-error.png"/>
+  		</div>
+      <p>
+      <div class="button-bar">
+        <button id="sensor1" class="button button-outline button-positive" ng-click="sensor1 = !sensor1;toggleSensor(17)">Left</button>
+        <button id="sensor2"class="button button-outline button-positive" ng-click="sensor2 = !sensor2;toggleSensor(27)">Middle</button>
+        <button id="sensor3" class="button button-outline button-positive" ng-click="sensor3 = !sensor3;toggleSensor(22)">Right</button>
+      </div>
+  </ion-content>
+</ion-view>
